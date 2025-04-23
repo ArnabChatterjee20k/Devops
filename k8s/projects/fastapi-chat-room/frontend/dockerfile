@@ -1,0 +1,8 @@
+#  no need of multistage as one html file only
+# no /var
+
+FROM nginx
+
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+
+COPY ./index.html /usr/share/nginx/html/chat-room/index.html

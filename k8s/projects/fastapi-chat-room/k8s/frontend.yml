@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-room-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: chat-frontend
+  
+  template:
+    metadata:
+      labels:
+        app: chat-frontend
+    
+    spec:
+      containers:
+      - image: chat-room-frontend
+        name: chat-room
+        ports:
+        - containerPort: 8000  # Exposing port 8000
+        imagePullPolicy: Never
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-room-frontend-svc
+  
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 30002
+      port: 80
+      targetPort: 9000
+  selector:
+    app: chat-frontend

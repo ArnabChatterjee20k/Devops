@@ -22,7 +22,8 @@
 
     <script>
       const origin = window.origin;
-      const ws = new WebSocket(`${origin.startsWith("https")?"wss":"ws"}://${window.location.host}/ws`);
+      // const ws = new WebSocket(`${origin.startsWith("https")?"wss":"ws"}://${window.location.host}/ws`);
+      const ws = new WebSocket('ws://chat-room-backend-svc:80/ws');
       const log = document.getElementById("log");
 
       ws.onmessage = (event) => {
